@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 
-export const Estudiantes = ({}) => {
 
-	 const [estudiantes, setEstudiantesState] = useState([])
+export default function Estudiantes() {
+
+    const [estudiantes, setEstudiantesState] = useState([])
 
 	useEffect(() => {
 		fetch("./json/hp-students.json")
@@ -12,19 +13,12 @@ export const Estudiantes = ({}) => {
 		})
 	}, [])
 
-	return estudiantes
-}
-
-export default function Estudiantes({setEstudiantesState}) {
-
-	const estudiantes = setEstudiantesState()
 
 	return (
 <div className="tarjeta">
 <div className="estado">Estado</div>
 <div className="icono">Icono Fav</div>
 <div className="tipo">Tipo</div>
-<img className="Imagen">Imagen</img>
 <h2 className="Nombre">Nombre</h2>
     
     <ul className="datos">
@@ -40,7 +34,6 @@ export default function Estudiantes({setEstudiantesState}) {
                 <div className="tarjeta" key={estudiantes}>
                     <div className="estado">{estudiantes.alive}</div>
                     <div className="tipo">{estudiantes.hogwartsStudent}</div>
-                    <img className="Imagen">{estudiantes.image}</img>
                     <h2 className="Nombre">{estudiantes.name}</h2>
                     <ul className="datos">
                         <li>{estudiantes.dateOfBirth}</li>

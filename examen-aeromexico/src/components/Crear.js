@@ -1,101 +1,91 @@
-import React, { useState } from 'react'
+export const Crear = ({personaje, conseguirPersonaje, setCrear, setEstudiantesState }) => {
+    const titulo_componente = "Crear Personaje";
 
+    const guardarPersonaje = (e, id) => {
+      e.preventDefault();
 
-export const Crear = ({setEstudiantesState}) => {
+      let target = e.target;
 
-    const tituloComponente = "Agregar un Personaje";
+      const personajes_almacenados = conseguirPersonaje();
+      const indice = personajes_almacenados.findIndex(personaje => personaje.id === id);
 
-    const [ personajeState, setPersonajeState ] = useState ({
-      name:'',
-      dateOfBirth:'',
-      eyeColour:'',
-      hairColour:'',
-      gender:'',
-      hogwartsStudent:'',
-      hogwartsStaff:''
-    });
-  
-    const { name, dateOfBirth, eyeColour, hairColour, gender, hogwartsStudent, hogwartsStaff } = personajeState
+      let personaje_creado = {
+        id,
+        nombre: target.nombre.value,
+        cumpleaños: target.cumpleaños.value,
+        color_ojos: target.color_ojos.value,
+        color_pelo: target.color_pelo.value,
+        genero: target.genero.value,
+        posicion: target.posicion.value
 
-    const conseguirDatosForm = e =>{
-        e.preventDefault();
+      };
 
-        let target = e.target;
-        let name = target.name.value;
-        let dateOfBirth = target.dateOfBirth.value;
-        let eyeColour = target.eyeColour.value;
-        let hairColour = target.hairColour.value;
-        let gender = target.gender.value;
-        let hogwartsStudent = target.hogwartsStudent.value;
-        let hogwartsStaff = target.hogwartsStaff.value;
+      personajes_almacenados[indice] = personaje_creado;
 
-        let agregar = {
-          id: new Date().getTime(),
-          name,
-          dateOfBirth,
-          eyeColour,
-          hairColour,
-          gender,
-          hogwartsStudent,
-          hogwartsStaff,
-        };
+      localStorage.setItem("personaje", JSON.stringify(personajes_almacenados));
 
-        setPersonajeState(agregar);
-
-        setPersonajeState(elementos => {
-          return [...elementos, agregar];
-        })
+      setEstudiantesState(personajes_almacenados)
+      setCrear(0);
     }
+
 
   return (
     <div className="add">
-      <h2 className="title">{tituloComponente}</h2>
+      <h3 className="title">{titulo_componente}</h3>
 
-      <form onSubmit={conseguirDatosForm}>
+      <form onSubmit={ e => guardarPersonaje(e, personaje.id)}>
           Nombre:<input type="text"
-                id="name"
-                name="name"
-                placeholder="Nombre"
+                name="nombre"
+                className="Nombre_creado"
+                defaultValue={personaje.nombre}
           />
 
           Cumpleaños:<input type="text"
-                id="cumpleaños"
-                dateOfBirth="cumpleaños"
-                placeholder="Cumpleaños"
+                name="cumpleaños"
+                className="Cumpleaños_creado"
+                defaultValue={personaje.cumpleaños}
           />
 
           Color de ojos:<input type="text"
-                id="color de ojos"
-                eyeColour="color de ojos"
-                placeholder="Color de Ojos"
+               name="ojos"
+               className="Ojos_creado"
+               defaultValue={personaje.color_ojos}
           />
 
           Color de pelo:<input type="text"
-                id="color de pelo"
-                hairColour="color de pelo"
-                placeholder="Color de pelo"
+             name="pelo"
+             className="Pelo_creado"
+             defaultValue={personaje.color_pelo}
           />
 
           Genero: <input type="radio"
-              id="genero"
-              gender="genero"/> <input type="radio"
-              id="genero"
-              gender="genero"/>  
+             name="genero"
+             defaultValue={personaje.genero}
+             className="genero_creado"  
+              /> 
+              
+              <input type="radio"
+              name="genero"
+              defaultValue={personaje.genero}
+              className="genero_creado"              
+              />  
 
           Posicion: 
           <input type="radio"
-              id="posicion"
-              hogwartsStudent="posicion"
+              name="posicion"
+              defaultValue={personaje.posicion}
+              className="posicion_creada"  
           /> Estudiante
           
           <input type="radio"
-              id="posicion"
-              hogwartsStaff="posicion"
+             name="posicion"
+             defaultValue={personaje.posicion} 
+             className="posicion_creada" 
           /> Staff
           
           <input type="submit"
-                id="save"
-                value="Guardar"
+              className="agregar"
+              value="Agregar"
           />
 
       </form>

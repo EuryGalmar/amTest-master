@@ -1,20 +1,30 @@
+import { useState } from 'react';
 import './App.scss';
 import { Crear } from "./components/Crear";
-import setEstudiantesState from './components/Estudiantes';
+
+const [setState, ] = useState (false);
 
 function App() {
 
-  const [setEstudiantesState] = useState([]);
+  const crear = () => {
+    
 
+    if(crear){
+        return (setState) ? <Crear/> : null
+    }else{
+      return null
+    }
+  }
+  
   return (
     <div>
     <div className="Flex-container">
-        <div className='rectangulo'>
+        <button className='rectangulo'>
           Favoritos
-        </div>
-        <div className="rectangulo">
-            <Crear setEstudiantesState={setEstudiantesState}/>
-        </div>
+        </button>
+        <button className="rectangulo"onClick={() => crear(!setState)}>
+          Agregar
+        </button>
     </div>
     <br/><br/><br/><br/>
     <h1 className='titulo'>Harry Potter</h1>
