@@ -7,10 +7,6 @@ body{
    width: 100%;
 }
 
-.Flex-container{
-    display: flex;
-   justify-content: flex-end; 
-}
 
 .rectangulo{
     width: 281px;
@@ -58,11 +54,54 @@ h2{
     color: white;
 }
 
-.add{
-    width: 727px;
-    height: 596px;
-    margin-top: 1467px;
-    margin-left: 2400px;
-    border-radius: 10px;
+.Form-add{
     background: #FFFFFF;
+    width: 727px;
+    height: 230px;
+    border-radius:10px;
+    
+}
+
+.container-card{
+    width: 50%;
+}
+
+.card-items {
+    max-width: 40%;
+    display: flex;
+    border: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5px;
+}
+
+img { 
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    max-width: 100px;
+}
+
+
+.cotainer-info {
+    background-color: #FFFFFF;
+    width: 80%;
+    max-width: 302px;
+}
+
+.name-title{
+    text-align :center;
+    color: black;
+}
+
+
+.container-elements{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h4 {
+    font-size: 14px;
 }
