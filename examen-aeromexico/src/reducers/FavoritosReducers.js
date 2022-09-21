@@ -1,17 +1,17 @@
+
+
 const INITIAL_STATE = {
     data: [],
     loading: false,
     error: "",
   };
   
-  export default (state = INITIAL_STATE, action) => {
+export const FavoritosReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-      case "LOAD_DATA":
+      case "ADD":
         return {
           ...state,
-          data: action.payload,
-          loading: false,
-          error: "",
+          data:  [...state.data, action.payload]
         };
   
       case "LOADING":
@@ -22,3 +22,6 @@ const INITIAL_STATE = {
         return state;
     }
   };
+
+
+  

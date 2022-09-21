@@ -1,23 +1,45 @@
 import {  useState } from "react";
 import { Crear } from "./Crear";
-import { Card } from './Card'
+import  Card  from './Card'
+import { Favoritos } from "./Favoritos";
+
+
 
 import characters from '../json/hp-characters.json';
 
 export const Principal = () => {
 
 
-    const [ state, setState ] = useState(null);
+
+    const [ state, setState ] = useState(false);
+
+    const [favoritos, setFavoritos] = useState(false)
+
+    const cerrarModal = () =>{
+      setState(false)
+    }
+
 
       return (
-        <div>
+        <div className="body">
         <div className="flex-container">
-            <button className='rectangulo'>
+
+
+            <button className='rectangulo1' onClick={()=>{
+              setFavoritos(!favoritos)
+            }}>
               Favoritos
             </button>
-            <button className="rectangulo"onClick={() =>  setState(  !state )  }>Agregar</button>
+
+
+
+            <button className="rectangulo2"onClick={() =>  setState(  !state )  }>Agregar</button>
+
             {
-          state && <Crear />
+          state && <Crear fun={cerrarModal}/>
+            }
+            {
+              favoritos && <Favoritos/>
             }
 
         </div>
@@ -29,14 +51,14 @@ export const Principal = () => {
         
         <br/>
     
-        <div className='flex-container'>
+        <div className='buttons'>
           <button className='estudiantes'>Estudiantes</button>
           <button className='estudiantes'>Staff</button>
         </div>
 
         <div className="container-elements" > 
         {
-          characters.map((element) =>  <Card key={ element.name } elementos={element} /> )
+          characters.map((element, index) =>  <Card key={ index } elementos={element}  /> )
         } 
         </div>
 

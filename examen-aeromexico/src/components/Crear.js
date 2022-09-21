@@ -1,109 +1,144 @@
 import { useState } from "react";
+import { Input } from "./Input";
 
-export const Crear = () => {
+export const Crear = ({fun}) => {
 
-  const [ form] = useState({
-    id:"",
-    nombre:"",
-    cumpleaños:"",
-    color_ojos:"",
-    color_pelo:"",
-    genero:"",
-    posicion:"",
+  const [form] = useState({
+    id: "",
+    nombre: "",
+    cumpleaños: "",
+    color_ojos: "",
+    color_pelo: "",
+    genero: "",
+    posicion: "",
     //posicion:""
   })
 
-    const titulo_componente = "Agregar un Personaje";
-    const guardarPersonaje = (e, id) => {
-      e.preventDefault();
+  const titulo_componente = "Agregar un Personaje";
+  const guardarPersonaje = (e, id) => {
+    e.preventDefault();
 
-     let target = e.target;
+    let target = e.target;
 
-      //const personajes_almacenados = conseguirPersonaje();
-      //const indice = personajes_almacenados.findIndex(personaje => personaje.id === id);
+    //const personajes_almacenados = conseguirPersonaje();
+    //const indice = personajes_almacenados.findIndex(personaje => personaje.id === id);
 
-      
-      let personaje_creado = {
-        id,
-        nombre: target.nombre.value,
-        cumpleaños: target.cumpleaños.value,
-        color_ojos: target.color_ojos.value,
-        color_pelo: target.color_pelo.value,
-        genero: target.genero.value,
-        posicion: target.posicion.value
 
-      };
-      
-      //personajes_almacenados[indice] = personaje_creado;
+    let personaje_creado = {
+      id,
+      nombre: target.nombre.value,
+      cumpleaños: target.cumpleaños.value,
+      color_ojos: target.color_ojos.value,
+      color_pelo: target.color_pelo.value,
+      genero: target.genero.value,
+      posicion: target.posicion.value
 
-      //localStorage.setItem("personaje", JSON.stringify(personajes_almacenados));
+    };
 
-      //setEstudiantesState(personajes_almacenados)
-      //setCrear(0);
-    }
+    //personajes_almacenados[indice] = personaje_creado;
 
+    //localStorage.setItem("personaje", JSON.stringify(personajes_almacenados));
+
+    //setEstudiantesState(personajes_almacenados)
+    //setCrear(0);
+  }
+  
 
   return (<div className="add">
-      
 
-      <form className="Form-add" onSubmit={ e => guardarPersonaje(e, form.id)}>
+    <div className="cerrar" onClick={fun}> <span>x</span></div>
+
+
+    <form className="Form-add" onSubmit={e => guardarPersonaje(e, form.id)}>
       <h3 className="title">{titulo_componente}</h3>
-          Nombre:<input type="text"
-                name="nombre"
-                className="Nombre_creado"
-                defaultValue={form.nombre}
-          />
 
-          Cumpleaños:<input type="text"
-                name="cumpleaños"
-                className="Cumpleaños_creado"
-                defaultValue={form.cumpleaños}
-          />
 
-          Color de ojos:<input type="text"
-               name="ojos"
-               className="Ojos_creado"
-               defaultValue={form.color_ojos}
-          />
+      <div>
 
-          Color de pelo:<input type="text"
-             name="pelo"
-             className="Pelo_creado"
-             defaultValue={form.color_pelo}
-          />
+        <div className="inputs">
 
-          Genero: <input type="radio"
-             name="genero"
-             defaultValue={form.genero}
-             className="genero_creado"  
-              /> Mujer 
-              
-              <input type="radio"
-              name="genero"
-              defaultValue={form.genero}
-              className="genero_creado"              
-              /> Hombre
+        <Input title={"NOMBRE"} defaultValue={form.nombre}/>
 
-          Posicion: 
-          <input type="radio"
-              name="posicion"
-              defaultValue={form.posicion}
-              className="posicion_creada"  
-          /> Estudiante
+        <Input title={"CUMPLEAÑOS"} defaultValue={form.cumpleaños}/>
+
+      </div>
+
+      <div className="inputs">
+        <Input title={"COLOR DE OJOS"} defaultValue={form.color_ojos}/>
+
+        <Input title={"COLOR DE PELO"} defaultValue={form.color_pelo}/>
+
+        </div>
+
+        
+
+
+
+
           
-          <input type="radio"
-             name="posicion"
-             defaultValue={form.posicion} 
-             className="posicion_creada" 
-          /> Staff
-          
-          <input type="submit"
-              className="agregar"
-              value="Agregar"
-          />
 
-      </form>
+        <div className="radios">
+        <div className="genero">
+        <p >GENERO</p>
+        
+        <div className="radio-input"> 
+        
+        <div><input type="radio"
+          name="genero"
+          defaultValue={form.genero}
+          className="genero_creado"
+        /> Mujer
+        </div>
 
-    </div>
+        <div>
+        <input type="radio"
+          name="genero"
+          defaultValue={form.genero}
+          className="genero_creado"
+        /> Hombre
+        </div>
+
+        </div>
+        </div>
+
+
+        <div className="genero">
+
+        <p>POSICION</p>
+        <div className="radio-input">
+        <div>
+        
+        <input type="radio"
+          name="posicion"
+          defaultValue={form.posicion}
+          className="posicion_creada"
+        /> Estudiante
+        </div>
+
+        <div>
+        <input type="radio"
+          name="posicion"
+          defaultValue={form.posicion}
+          className="posicion_creada"
+        /> Staff
+        </div>
+
+      </div>
+      </div>
+
+      </div>
+
+
+        <p className="fotografia">FOTOGRAFIA(input type file)</p>
+        <div className="button-save"> 
+        <input type="submit"
+          className="agregar"
+          value="Agregar"
+        />
+      </div>
+      </div>
+    </form>
+
+  </div>
   )
 }
